@@ -15,7 +15,7 @@ from .qubit import Qubit
 
 
 # ============================================================================
-# Pauli Gates (Section 1.1.1, Equation 5)
+# Pauli Gates (Section 2.2, Equation 32)
 # ============================================================================
 
 # Pauli X (NOT gate) - bit flip
