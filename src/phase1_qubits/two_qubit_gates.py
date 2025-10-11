@@ -240,7 +240,7 @@ If you apply it twice, you get a full SWAP.
 
 def apply_two_qubit_gate(state: np.ndarray, gate: np.ndarray) -> np.ndarray:
     """
-    Apply a two-qubit gate to a two-qubit state.
+    Apply a two-qubit gate to a two-qubit state vector.
 
     Parameters
     ----------
@@ -269,6 +269,36 @@ def apply_two_qubit_gate(state: np.ndarray, gate: np.ndarray) -> np.ndarray:
         raise ValueError("Gate must be a 4×4 matrix")
 
     return gate @ state
+
+
+def apply_gate_to_system(system, gate: np.ndarray):
+    """
+    Apply a two-qubit gate to a TwoQubitSystem object.
+
+    Parameters
+    ----------
+    system : TwoQubitSystem
+        The two-qubit system
+    gate : np.ndarray
+        4×4 unitary matrix
+
+    Returns
+    -------
+    TwoQubitSystem
+        New system with transformed state
+
+    Examples
+    --------
+    >>> from .multi_qubit import two_ket_10
+    >>> sys = two_ket_10()
+    >>> result = apply_gate_to_system(sys, CNOT)
+    >>> print(result)  # |11⟩
+    """
+    # Import here to avoid circular dependency
+    from .multi_qubit import TwoQubitSystem
+
+    new_state = apply_two_qubit_gate(system.state, gate)
+    return TwoQubitSystem(new_state, normalize=False)
 
 
 def tensor_product(state1: np.ndarray, state2: np.ndarray) -> np.ndarray:
