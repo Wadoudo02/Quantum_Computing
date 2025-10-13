@@ -301,6 +301,53 @@ def apply_gate_to_system(system, gate: np.ndarray):
     return TwoQubitSystem(new_state, normalize=False)
 
 
+def apply_single_qubit_gate(system, gate: np.ndarray, qubit_index: int):
+    """
+    Apply a single-qubit gate to one qubit in a two-qubit system.
+
+    This creates the tensor product gate: I ⊗ U or U ⊗ I
+
+    Parameters
+    ----------
+    system : TwoQubitSystem
+        The two-qubit system
+    gate : np.ndarray
+        2×2 single-qubit unitary matrix
+    qubit_index : int
+        Which qubit to apply gate to (0 or 1)
+
+    Returns
+    -------
+    TwoQubitSystem
+        New system with gate applied
+
+    Examples
+    --------
+    >>> from .multi_qubit import tensor_product
+    >>> from phase1_qubits.qubit import ket_0
+    >>> from phase1_qubits.gates import HADAMARD
+    >>> system = tensor_product(ket_0(), ket_0())  # |00⟩
+    >>> # Apply Hadamard to first qubit: (H ⊗ I)|00⟩
+    >>> result = apply_single_qubit_gate(system, HADAMARD, 0)
+    """
+    from .multi_qubit import TwoQubitSystem
+
+    # Create tensor product gate
+    identity = np.eye(2, dtype=complex)
+
+    if qubit_index == 0:
+        # U ⊗ I (gate on first qubit)
+        full_gate = np.kron(gate, identity)
+    elif qubit_index == 1:
+        # I ⊗ U (gate on second qubit)
+        full_gate = np.kron(identity, gate)
+    else:
+        raise ValueError("qubit_index must be 0 or 1")
+
+    new_state = apply_two_qubit_gate(system.state, full_gate)
+    return TwoQubitSystem(new_state, normalize=False)
+
+
 def tensor_product(state1: np.ndarray, state2: np.ndarray) -> np.ndarray:
     """
     Compute tensor product of two single-qubit states.

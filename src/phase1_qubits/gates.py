@@ -147,14 +147,14 @@ def rotation_z(theta: float) -> np.ndarray:
 def phase_shift(phi: float) -> np.ndarray:
     """
     General phase shift gate.
-    
+
     P(φ) = [[1, 0], [0, e^(iφ)]]
-    
+
     Parameters
     ----------
     phi : float
         Phase angle in radians
-    
+
     Returns
     -------
     np.ndarray
@@ -164,6 +164,12 @@ def phase_shift(phi: float) -> np.ndarray:
         [1, 0],
         [0, np.exp(1j * phi)]
     ], dtype=complex)
+
+
+# Short aliases for rotation gates (for convenience)
+rx = rotation_x
+ry = rotation_y
+rz = rotation_z
 
 
 # ============================================================================

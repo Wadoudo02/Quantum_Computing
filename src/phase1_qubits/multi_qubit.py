@@ -380,7 +380,45 @@ class TwoQubitSystem:
         return f"TwoQubitSystem(state={self.state})"
 
 
+# ============================================================================
+# Tensor Product Operations
+# ============================================================================
+
+def tensor_product(qubit1, qubit2) -> TwoQubitSystem:
+    """
+    Compute tensor product of two single qubits.
+
+    For |ψ₁⟩ = α|0⟩ + β|1⟩ and |ψ₂⟩ = γ|0⟩ + δ|1⟩:
+    |ψ₁⟩ ⊗ |ψ₂⟩ = αγ|00⟩ + αδ|01⟩ + βγ|10⟩ + βδ|11⟩
+
+    Parameters
+    ----------
+    qubit1 : Qubit
+        First qubit
+    qubit2 : Qubit
+        Second qubit
+
+    Returns
+    -------
+    TwoQubitSystem
+        Tensor product state in 4D Hilbert space
+
+    Examples
+    --------
+    >>> q0 = ket_0()
+    >>> q1 = ket_1()
+    >>> system = tensor_product(q0, q1)  # |01⟩
+    >>> print(system.state)
+    [0. 1. 0. 0.]
+    """
+    # Use Kronecker product (np.kron) for tensor product
+    state = np.kron(qubit1.state, qubit2.state)
+    return TwoQubitSystem(state, normalize=False)
+
+
+# ============================================================================
 # Convenience functions for common two-qubit states
+# ============================================================================
 
 def two_ket_00() -> TwoQubitSystem:
     """Create |00⟩ state."""
