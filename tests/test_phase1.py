@@ -1,9 +1,14 @@
 """Quick tests to verify Phase 1 is working"""
 import sys
-sys.path.append('src')
+from pathlib import Path
 
-from phase1_single_qubits.qubit import Qubit, ket_0, ket_1, ket_plus
-from phase1_single_qubits.gates import *
+
+# Add src to path
+sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
+
+
+from phase1_qubits.qubit import Qubit, ket_0, ket_1, ket_plus
+from phase1_qubits.gates import *
 import numpy as np
 
 def test_qubit_creation():
