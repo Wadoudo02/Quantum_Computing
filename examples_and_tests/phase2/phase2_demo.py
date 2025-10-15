@@ -15,7 +15,7 @@ import sys
 from pathlib import Path
 
 # Add src to path
-sys.path.insert(0, str(Path(__file__).parent.parent / 'src'))
+sys.path.insert(0, str(Path(__file__).parent.parent.parent / 'src'))
 
 from phase2_entanglement.bell_states import bell_phi_plus, bell_phi_minus, bell_psi_plus, bell_psi_minus
 from phase2_entanglement.bells_inequality import demonstrate_bell_violation, classical_bound, quantum_bound
@@ -72,7 +72,7 @@ def main():
     print("\n📈 Part 3: Generating Visualizations")
     print("-" * 70)
 
-    plots_dir = Path(__file__).parent.parent / 'plots' / 'phase2'
+    plots_dir = Path(__file__).parent.parent.parent / 'plots' / 'phase2'
     plots_dir.mkdir(parents=True, exist_ok=True)
 
     print("Creating comprehensive CHSH demonstration plot...")

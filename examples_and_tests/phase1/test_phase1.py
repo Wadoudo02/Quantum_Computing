@@ -4,7 +4,7 @@ from pathlib import Path
 
 
 # Add src to path
-sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
+sys.path.insert(0, str(Path(__file__).parent.parent.parent / "src"))
 
 
 from phase1_qubits.qubit import Qubit, ket_0, ket_1, ket_plus

@@ -18,7 +18,7 @@ from pathlib import Path
 import numpy as np
 
 # Add src to path
-sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
+sys.path.insert(0, str(Path(__file__).parent.parent.parent / "src"))
 
 from phase1_qubits.qubit import (
     Qubit, ket_0, ket_1, ket_plus, ket_minus, random_qubit
@@ -39,7 +39,7 @@ from phase1_qubits.two_qubit_gates import (
 )
 
 # Create plots directory
-PLOTS_DIR = Path(__file__).parent.parent / "plots" / "phase1"
+PLOTS_DIR = Path(__file__).parent.parent.parent / "plots" / "phase1"
 PLOTS_DIR.mkdir(parents=True, exist_ok=True)
 
 
