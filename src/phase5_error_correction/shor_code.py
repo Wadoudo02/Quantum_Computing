@@ -23,7 +23,7 @@ from typing import Tuple, List, Optional, Dict
 from qiskit import QuantumCircuit, QuantumRegister, ClassicalRegister
 from qiskit.quantum_info import Statevector, Operator, DensityMatrix
 from qiskit_aer import AerSimulator
-from qiskit.providers.aer.noise import NoiseModel, pauli_error, depolarizing_error
+from qiskit_aer.noise import NoiseModel, pauli_error, depolarizing_error
 
 
 class ShorCode:
